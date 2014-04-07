@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import math as m
+import matplotlib.pyplot as plt
 
 fx = input("fx: ");
 fy = input("fy: ");
@@ -19,3 +20,13 @@ Z = [x + y for x, y in zip(X, Y)];
 output = file("out_2_vanilla", "w");
 for x, y, z in zip (X, Y, Z):
 	output.write("%.3f\t%.3f\t%.3f\n" % (x, y, z));
+
+plt.figure(figsize = (8, 5));
+
+plt.plot(t, X, "b.-", label = "X");
+plt.plot(t, Y, "r.-", label = "X");
+plt.plot(t, Z, "g.-", label = "X");
+
+plt.xlabel("t");
+plt.legend();
+plt.savefig("plot_2_vanilla.pdf");

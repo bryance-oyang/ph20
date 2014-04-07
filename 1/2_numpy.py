@@ -2,21 +2,13 @@
 
 import numpy as np
 
-#fx = input("fx: ");
-#fy = input("fy: ");
-#Ax = input("Ax: ");
-#Ay = input("Ay: ");
-#phi = input("phi: ");
-#dt = input("Delta t: ");
-#N = input("N: ");
-
-fx = 1;
-fy = 2;
-Ax = 1;
-Ay = 1;
-phi = 0;
-dt = 1./8;
-N = 10;
+fx = input("fx: ");
+fy = input("fy: ");
+Ax = input("Ax: ");
+Ay = input("Ay: ");
+phi = input("phi: ");
+dt = input("Delta t: ");
+N = input("N: ");
 
 t = dt * np.array(range(0, N+1));
 

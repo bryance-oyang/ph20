@@ -24,8 +24,8 @@ for x, y, z in zip (X, Y, Z):
 plt.figure(figsize = (8, 5));
 
 plt.plot(t, X, "b.-", label = "X");
-plt.plot(t, Y, "r.-", label = "X");
-plt.plot(t, Z, "g.-", label = "X");
+plt.plot(t, Y, "r.-", label = "Y");
+plt.plot(t, Z, "g.-", label = "Z");
 
 plt.xlabel("t");
 plt.legend();

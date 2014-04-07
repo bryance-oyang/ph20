@@ -17,7 +17,7 @@ X = Ax * np.sin(2 * np.pi * fx * t);
 Y = Ay * np.sin(2 * np.pi * fy * t + phi);
 Z = X + Y;
 
-np.savetxt("out_2_numpy", np.array([X, Y, Z]).T, fmt = "%.3f", delimiter = "\t");
+np.savetxt("latex/out_2_numpy", np.array([X, Y, Z]).T, fmt = "%.3f", delimiter = "\t");
 
 plt.figure(figsize = (8, 5));
 
@@ -27,4 +27,4 @@ plt.plot(t, Z, "g.-", label = "Z");
 
 plt.xlabel("t");
 plt.legend();
-plt.savefig("plot_2_numpy.pdf");
+plt.savefig("latex/plot_2_numpy.pdf");

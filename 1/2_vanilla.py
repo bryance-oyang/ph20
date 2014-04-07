@@ -17,7 +17,7 @@ X = [Ax * m.sin(2 * m.pi * fx * i) for i in t];
 Y = [Ay * m.sin(2 * m.pi * fy * i + phi) for i in t];
 Z = [x + y for x, y in zip(X, Y)];
 
-output = file("out_2_vanilla", "w");
+output = file("latex/out_2_vanilla", "w");
 for x, y, z in zip (X, Y, Z):
 	output.write("%.3f\t%.3f\t%.3f\n" % (x, y, z));
 
@@ -29,4 +29,4 @@ plt.plot(t, Z, "g.-", label = "Z");
 
 plt.xlabel("t");
 plt.legend();
-plt.savefig("plot_2_vanilla.pdf");
+plt.savefig("latex/plot_2_vanilla.pdf");

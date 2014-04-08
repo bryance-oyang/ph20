@@ -22,4 +22,5 @@ plt.plot(X, Y, "b.-");
 
 plt.xlabel("X");
 plt.ylabel("Y");
-plt.savefig("latex/plot_3_numpy.pdf");
+plt.title("Ratio: %.4f, $\phi$ = %.4f" % (float(fx)/fy, phi));
+plt.savefig("latex/plot_3_ratio_%.0f_%.0f_phase_%.0f.pdf" % (fx, fy, phi));

@@ -6,7 +6,7 @@ import scipy.integrate
 from matplotlib.ticker import FormatStrFormatter
 
 # use trapezoid thing to integrate using N subdivisions
-# returns \int_a^b func(x)\,dx
+# returns $\int_a^b func(x)\,dx$
 def trapezoidal(func, a, b, N):
 	[a, b, N] = map(float, [a, b, N])
 	h = (b - a)/N
@@ -14,7 +14,7 @@ def trapezoidal(func, a, b, N):
 	return h * (sum(func(x)) + func(a)/2 + func(b)/2)
 
 # use simpson's thing to integrate using N subdivisions
-# returns \int_a^b func(x)\,dx
+# returns $\int_a^b func(x)\,dx$
 def simpson(func, a, b, N):
 	[a, b, N] = map(float, [a, b, N])
 	h = (b - a)/N
@@ -23,7 +23,7 @@ def simpson(func, a, b, N):
 	return (h * (sum(func(key))/3 + 2*sum(func(mid))/3
 		+ func(a)/6 + func(b)/6))
 
-# make plots to see convergence of \int_0^1 \exp(x)\,dx as
+# make plots to see convergence of $\int_0^1 \exp(x)\,dx$ as
 # number of subdivisions (N) increases for both trapezoid and simpson
 N = np.arange(1, 36)
 plt.clf()
@@ -47,9 +47,9 @@ ax.yaxis.set_major_formatter(FormatStrFormatter("%0.4f"))
 plt.tight_layout()
 plt.savefig("latex/approximation_errors.pdf")
 
-# evaluates \int_a^b func(x)\,dx using simpson's thing
-# with N, 2N, 4N, 8N, etc subdivisions until requested accuracy is reached
-# (simpson(2^{k+1} N) - simpson(2^k N))/simpson(2^k N) < requested accuracy
+# evaluates $\int_a^b func(x)\,dx$ using simpson's thing
+# with $N, 2N, 4N, 8N,$ etc subdivisions until requested accuracy is reached
+# (simpson($2^{k+1} N$) - simpson($2^k N$))/simpson($2^k N$) < requested accuracy
 def integrate(func, a, b, N, requested_accuracy):
 	k = 0
 	prev = simpson(func, a, b, N * 2**k)

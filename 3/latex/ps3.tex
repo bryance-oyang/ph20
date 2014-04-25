@@ -1,0 +1,113 @@
+\documentclass[12pt, oneside, letterpaper, fleqn]{article}
+
+\usepackage{bobianite}
+
+\pagestyle{fancy}
+\headheight 1.6cm
+\fancyhead[L]{Bryance Oyang\\PS 3\\Ph 20}
+
+\begin{document}
+
+Throughout, the equation we're working with is
+\begin{gather*}
+\ddot{x} = -x\\
+x(0) = 1\\
+\dot{x}(0) = 0
+\end{gather*}
+and $h$ is step size ($\approx dt$).
+
+\section{Part I}
+\paragraph{Problem 1}
+\begin{gather*}
+\begin{pmatrix}x_{k+1}\\v_{k+1}\end{pmatrix}
+= \begin{pmatrix}1 & h\\ -h & 1\end{pmatrix}
+\begin{pmatrix}x_k\\v_k\end{pmatrix}
+\end{gather*}
+\begin{figure}[htbp]
+\caption{Explicit Euler method}
+\includegraphics[width=\textwidth]{problem1.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 2}
+\begin{gather*}
+x_\text{anal}(t) = \cos(t)
+\end{gather*}
+\begin{figure}[htbp]
+\caption{Global errors (explicit Euler)}
+\includegraphics[width=\textwidth]{problem2.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 3}
+Showing that truncation error is proportional to $h$ (explicit Euler).
+\begin{figure}[htbp]
+\caption{$\max(x_\text{anal} - x)$ vs $h$}
+\includegraphics[width=\textwidth]{problem3.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 4}
+Energy increases as time goes on, just as error increased as time goes
+on (explicit Euler).
+\begin{figure}[htbp]
+\caption{$E$ vs $t$}
+\includegraphics[width=\textwidth]{problem4.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 5}
+Comparisons of explicit and implicit Euler.
+
+\begin{figure}[htbp]
+\caption{$\max(x_\text{anal} - x)$ vs $t$}
+\includegraphics[width=\textwidth]{problem5_1.pdf}
+\end{figure}
+\pagebreak
+\begin{figure}[htbp]
+\caption{$E$ vs $t$}
+\includegraphics[width=\textwidth]{problem5_2.pdf}
+\end{figure}
+Energy decreases for implicit Euler.
+
+\pagebreak
+\section{Part II}
+\paragraph{Problem 1}
+Phase space trajectories for explicit and implicit Euler. Analytic
+solution (not shown) would be a circle.
+\begin{figure}[htbp]
+\caption{Phase space}
+\includegraphics[width=\textwidth]{p2_problem1.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 2}
+Phase space for symplectic. Does not spiral in or out.
+\begin{figure}[htbp]
+\caption{Phase space}
+\includegraphics[width=\textwidth]{p2_problem2.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 3}
+Energy of symplectic system. Looks like sine oscillation around
+analytic's energy with period $\pi$.
+\begin{figure}[htbp]
+\caption{$E$ vs $t$}
+\includegraphics[width=\textwidth]{p2_problem3.pdf}
+\end{figure}
+
+\pagebreak
+\paragraph{Problem 4}
+Computed symplectic solution for 360 cycles. Plotting the last 3 cycles
+against analytic solution. Can see lag developing.
+\begin{figure}[htbp]
+\caption{Symplectic vs Analytic}
+\includegraphics[width=\textwidth]{p2_problem4.pdf}
+\end{figure}
+
+\appendix
+\section{Python}
+\lstinputlisting[language = python]{../ps3.py}
+
+\end{document}

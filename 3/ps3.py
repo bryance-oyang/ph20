@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # do euler method for $\ddot{x} = -x$, with initial conditions
 # $x(0) = 1; \dot{x}(0) = 0$
 def euler(h):
-	#$\begin{pmatrix}1 & h\\-h & 1\end{pmatrix} \begin{pmatrix}x_i\\v_i\end{pmatrix} = \begin{pmatrix}x_{i+1}\\v_{i+1}\end{pmatrix}
+	#$\begin{pmatrix}1 & h\\-h & 1\end{pmatrix} \begin{pmatrix}x_i\\v_i\end{pmatrix} = \begin{pmatrix}x_{i+1}\\v_{i+1}\end{pmatrix}$
 	initial_cond = np.matrix([[1, 0]]).transpose()
 	x = np.array([initial_cond[0, 0]]);
 	v = np.array([initial_cond[1, 0]]);

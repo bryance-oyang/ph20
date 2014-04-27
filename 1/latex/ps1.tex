@@ -25,7 +25,22 @@ N:\. 100\,}
 
 \paragraph{Problem 3}
 \begin{enumerate}
-\setcounter{enumi}{1}
+\item Figure will repeat $\iff$ $f_x t =$ integer and $f_y t =$ integer
+for some nonzero $t$ $\iff$ $\frac{f_x}{f_y} =$ rational, obtained by
+dividing the two previous equations. 
+
+Finding smallest positive $t$ when it repeats: let $f_y = \frac{a}{b}
+f_x$ where $a,b$ are integers, so that the ratio between $f_x$ and $f_y$
+is rational. $f_x t =$ integer $\iff t = \frac{n}{f_x}$ where $n$ is an
+integer. $f_y \frac{n}{f_x} = \frac{a}{b} n$ is an integer if $an$ is
+divisible by $b$. If we want to look for the smallest positive $n$ where
+$an$ is divisible by $b$, we must have $an = \lcm(a, b)$ because $an$ is
+by default already divisible by $a$. $an = \lcm(a, b) =
+\frac{ab}{\gcd(a, b)}$ so $n = \frac{b}{\gcd(a, b)}$. So the earliest
+positive time that the figure repeats is $t = \frac{b}{\gcd(a, b) f_x} =
+\frac{a}{\gcd(a, b) f_y}$. This simplifies if we assume $\frac{a}{b}$ is
+in lowest terms so that $\gcd(a, b) = 1$.
+
 \item Lissajous Figures: Ratio $= f_x/f_y$. Adjusts number of loopies in
 horizontal/vertical.
 \begin{figure}[htbp]

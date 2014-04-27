@@ -6,6 +6,8 @@
 \headheight 1.36cm
 \fancyhead[L]{Bryance Oyang\\PS 1\\Ph 20}
 
+\newcommand{\w}{\omega}
+
 \renewcommand{\labelenumi}{(\alph{enumi})}
 
 \begin{document}
@@ -54,7 +56,11 @@ horizontal/vertical.
 \end{figure}
 
 \pagebreak
-\item $\phi$ adjusts how circly it is
+\item Can tune oscilloscope by making it a straight line with no
+deviations. No deviations makes sure the frequency is same for both, and
+straight line makes phase the same.
+
+$\phi$ adjusts how circly it is
 \begin{figure}[htbp]
 \includegraphics[width=0.8\textwidth]{plot_3_ratio_1_1_phase_0.pdf}
 \end{figure}
@@ -71,7 +77,11 @@ horizontal/vertical.
 
 \pagebreak
 \paragraph{Problem 4}
-Beats.
+Beats. We have something like $\sin((\w_1 - \w_2)t/2)\sin((\w_1 +
+\w_2)t/2)$. The amplitude of the $(\w_1 + \w_2)/2$ part is controlled by
+$(\w_1 - \w_2)/2$, but the beats show up with frequency $(\w_1 - \w_2)$
+because negative amplitude just gives the upside down of the positive,
+which looks almost the same.
 \begin{figure}[htbp]
 \includegraphics[width=0.8\textwidth]{plot_4.pdf}
 \end{figure}

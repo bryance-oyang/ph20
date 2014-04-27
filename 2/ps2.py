@@ -25,25 +25,17 @@ def simpson(func, a, b, N):
 
 # make plots to see convergence of $\int_0^1 \exp(x)\,dx$ as
 # number of subdivisions (N) increases for both trapezoid and simpson
-N = np.arange(1, 36)
+N = np.logspace(0, 4, num = 100).astype(int)
 plt.clf()
-plt.subplot(2, 1, 1)
 trap_integral = np.array(map(lambda N: trapezoidal(np.exp, 0, 1, N), N))
 trap_error = trap_integral - 1.7182818284590452354
-plt.plot(N, trap_error, "g.-", label = "Trapezoidal")
+plt.loglog(N, trap_error, "g.-", label = "Trapezoidal")
 simp_integral = np.array(map(lambda N: simpson(np.exp, 0, 1, N), N))
 simp_error = simp_integral - 1.7182818284590452354
-plt.plot(N, simp_error, "b.-", label = "Simpson")
-plt.legend()
+plt.loglog(N, simp_error, "b.-", label = "Simpson")
 plt.ylabel("Approximation - $\int_0^1 \exp(x)\,dx$")
-ax = plt.subplot(2, 1, 2)
-plt.plot(N, trap_error, "g.-", label = "Trapezoidal")
-plt.plot(N, simp_error, "b.-", label = "Simpson")
 plt.legend()
 plt.xlabel("$N$")
-plt.ylabel("Approximation - $\int_0^1 \exp(x)\,dx$")
-plt.ylim(simp_error.min(), simp_error.max())
-ax.yaxis.set_major_formatter(FormatStrFormatter("%0.4f"))
 plt.tight_layout()
 plt.savefig("latex/approximation_errors.pdf")
 

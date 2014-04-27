@@ -54,10 +54,12 @@ def integrate(func, a, b, N, requested_accuracy):
 	return cur
 
 # some tests
-print ("\\int_0^1 e^x\\,dx \\approx %0.10f"
-	% integrate(np.exp, 0, 1, 1, 0.00001))
+print ("\\int_0^1 e^x\\,dx \\approx %0.10f, error %0.5g"
+	% (integrate(np.exp, 0, 1, 1, 0.00001),
+	integrate(np.exp, 0, 1, 1, 0.00001) - 1.7182818284590452354))
 print ("\\int_0^1 x^9\\,dx \\approx %0.10f"
 	% integrate(lambda x: x**9, 0, 1, 1, 0.00001))
 
 print scipy.integrate.quad(np.exp, 0, 1)
 print scipy.integrate.romberg(np.exp, 0, 1)
+print (scipy.integrate.romberg(np.exp, 0, 1) - 1.7182818284590452354)

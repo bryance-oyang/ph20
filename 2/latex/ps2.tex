@@ -64,6 +64,24 @@ Error vs subdivisions
 \includegraphics[width=0.8\textwidth]{approximation_errors.pdf}
 \end{figure}
 
+\paragraph{Problem 5}
+Requested accuracy: $0.00001$. Computed value of $\int_0^1 e^x\,dx =
+1.7182819741$. Error $= $ 1.4559e-07.
+
+\paragraph{Problem 6}
+Using scipy's built in numerical integration:
+\begin{table}[htbp]
+\begin{tabular}{l | c | c}
+\hline\hline
+Method & Value of $\int_0^1 e^x\,dx$ & Error\\
+\hline
+\texttt{scipy.integrate.quad} & 1.7182818284590453 &
+1.9076760487502457e-14\\
+\texttt{scipy.integrate.romberg} & 1.71828182846 & 3.28626015289e-14\\
+\hline
+\end{tabular}
+\end{table}
+
 \lstinputlisting[language = python]{../ps2.py}
 
 \end{document}

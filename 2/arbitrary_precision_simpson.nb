@@ -147,7 +147,7 @@ Cell[BoxData[
   StringForm["Precision of error: ``", 
    DirectedInfinity[1]],
   Editable->False]], "Output",
- CellChangeTimes->{3.607732264060549*^9}]
+ CellChangeTimes->{3.607733104216134*^9}]
 }, Open  ]],
 
 Cell[TextData[StyleBox["Taking logs outside plotting function and converting \
@@ -226,7 +226,7 @@ Cell[BoxData[
  InterpretationBox["\<\"Precision of log of error: \\!\\(10.`\\)\"\>",
   StringForm["Precision of log of error: ``", 10.],
   Editable->False]], "Output",
- CellChangeTimes->{3.6077322951256323`*^9}],
+ CellChangeTimes->{3.6077331354308157`*^9}],
 
 Cell[BoxData[
  GraphicsBox[{{}, 
@@ -390,7 +390,7 @@ zMoM/gK9o9au
       FormBox[
        TemplateBox[{"10", "0"}, "Superscript", SyntaxForm -> SuperscriptBox], 
        TraditionalForm]}}}]], "Output",
- CellChangeTimes->{3.607732295284753*^9}]
+ CellChangeTimes->{3.607733135592155*^9}]
 }, Open  ]]
 },
 WindowSize->{1918, 1123},

@@ -1,0 +1,429 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     15949,        420]
+NotebookOptionsPosition[     15337,        395]
+NotebookOutlinePosition[     15673,        410]
+CellTagsIndexPosition[     15630,        407]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"simpson", "[", 
+    RowBox[{"func_", ",", "a_", ",", "b_", ",", "N_"}], "]"}], ":=", " ", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"h", "=", 
+        FractionBox[
+         RowBox[{"(", 
+          RowBox[{"b", "-", "a"}], ")"}], "N"]}], ",", 
+       RowBox[{"key", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"a", "+", 
+           RowBox[{"h", "*", "k"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", "1", ",", 
+            RowBox[{"N", "-", "1"}]}], "}"}]}], "]"}]}], ",", 
+       RowBox[{"mid", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"a", "+", 
+           FractionBox["h", "2"], "+", 
+           RowBox[{"h", "*", "k"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", "0", ",", 
+            RowBox[{"N", "-", "1"}]}], "}"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"h", "*", 
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"Total", "[", 
+          RowBox[{"func", "[", "key", "]"}], "]"}], "3"], "+", 
+        RowBox[{"2", "*", 
+         FractionBox[
+          RowBox[{"Total", "[", 
+           RowBox[{"func", "[", "mid", "]"}], "]"}], "3"]}], "+", 
+        FractionBox[
+         RowBox[{"func", "[", "a", "]"}], "6"], "+", 
+        FractionBox[
+         RowBox[{"func", "[", "b", "]"}], "6"]}], ")"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"logspace", "[", 
+    RowBox[{"a_", ",", "b_", ",", "num_"}], "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     SuperscriptBox["10", "k"], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "a", ",", "b", ",", 
+       FractionBox[
+        RowBox[{"b", "-", "a"}], 
+        RowBox[{"num", "-", "1"}]]}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.607726605054915*^9, 3.60772673192284*^9}, {
+  3.607726763163468*^9, 3.607726819571331*^9}, {3.607726906844598*^9, 
+  3.6077269287628202`*^9}, {3.607727204329927*^9, 3.607727224681941*^9}, {
+  3.6077272872236013`*^9, 3.60772742935721*^9}, {3.607727476251521*^9, 
+  3.6077274953331327`*^9}, {3.607727570553452*^9, 3.607727589132955*^9}, {
+  3.607727713877923*^9, 3.607727727129908*^9}, {3.607727933745727*^9, 
+  3.607727942536676*^9}}],
+
+Cell[TextData[StyleBox["logspace was defined so that it reproduces the \
+behavior of np.logspace", "Subsubtitle"]], "Text",
+ CellChangeTimes->{{3.607727978082934*^9, 3.607727995586862*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", 
+   RowBox[{"logspace", "[", 
+    RowBox[{"0", ",", "4", ",", "100"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"n", "=", 
+    RowBox[{"Floor", "[", "n", "]"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"n", ".", "astype"}], 
+    RowBox[{"(", "int", ")"}]}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.607727615876143*^9, 3.607727624058137*^9}, {
+  3.607727734650997*^9, 3.607727756916073*^9}, {3.6077280047949257`*^9, 
+  3.607728009363385*^9}, {3.607728046851001*^9, 3.607728073256734*^9}, {
+  3.6077282765359*^9, 3.6077282953621883`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"simpintegral", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"simpson", "[", 
+       RowBox[{"Exp", ",", "0", ",", "1", ",", "#1"}], "]"}], "&"}], ",", 
+     "n"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"simperror", "=", 
+   RowBox[{"simpintegral", "-", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"Exp", "[", "x", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringForm", "[", 
+  RowBox[{"\"\<Precision of error: ``\>\"", ",", 
+   RowBox[{"Precision", "[", "simperror", "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.607726875323357*^9, 3.6077268928946533`*^9}, {
+   3.607726934335147*^9, 3.607727000346781*^9}, {3.607727110968071*^9, 
+   3.60772711884132*^9}, {3.6077271856734533`*^9, 3.607727201158564*^9}, {
+   3.607727768940043*^9, 3.607727822299182*^9}, {3.607727867567787*^9, 
+   3.60772791793202*^9}, {3.607729295681087*^9, 3.607729307897417*^9}, {
+   3.607729431113325*^9, 3.607729445668297*^9}, 3.607729648324494*^9, 
+   3.607729680803784*^9, 3.60772987912232*^9, {3.607730328076301*^9, 
+   3.607730350495344*^9}, 3.6077304067122517`*^9, 3.607730473593648*^9, {
+   3.6077306195858107`*^9, 3.607730641380836*^9}, {3.607730805948148*^9, 
+   3.607730810164268*^9}, {3.607730841307539*^9, 3.607730841539167*^9}, {
+   3.607731185374799*^9, 3.607731224976355*^9}, {3.6077314236300583`*^9, 
+   3.6077314405585957`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"Precision of error: \\!\\(\[Infinity]\\)\"\>",
+  StringForm["Precision of error: ``", 
+   DirectedInfinity[1]],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.607732264060549*^9}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Taking logs outside plotting function and converting \
+to decimal number with 10 digits (instead of using ListLogLogPlot) in case \
+the plotting function doesn\[CloseCurlyQuote]t use arbitrary precision when \
+taking logs. Infinite precision is lost here (but after taking log) so that \
+numbers can be plotted.", "Subsubtitle"]], "Text",
+ CellChangeTimes->{{3.6077297557475777`*^9, 3.6077298631626673`*^9}, {
+  3.607730365024054*^9, 3.60773036824032*^9}, {3.607730877630033*^9, 
+  3.6077309498856163`*^9}, {3.607731317612512*^9, 3.607731329483954*^9}, {
+  3.607731369940037*^9, 3.607731389860071*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"logsimperror", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"10", ",", "simperror"}], "]"}], ",", "10"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringForm", "[", 
+  RowBox[{"\"\<Precision of log of error: ``\>\"", ",", " ", 
+   RowBox[{"Precision", "[", "logsimperror", "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"logn", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"10", ",", "n"}], "]"}], ",", "10"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"logn", "[", 
+        RowBox[{"[", "k", "]"}], "]"}], ",", 
+       RowBox[{"logsimperror", "[", 
+        RowBox[{"[", "k", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "1", ",", 
+       RowBox[{"Length", "[", "n", "]"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"Ticks", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"k", ",", 
+          RowBox[{"Superscript", "[", 
+           RowBox[{"10", ",", "k"}], "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", "4"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"k", ",", 
+          RowBox[{"Superscript", "[", 
+           RowBox[{"10", ",", "k"}], "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", 
+          RowBox[{"-", "25"}], ",", "0"}], "}"}]}], "]"}]}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.607729448037909*^9, 3.6077294996908407`*^9}, {
+   3.607729539979027*^9, 3.607729599365168*^9}, 3.607730479119569*^9, {
+   3.607730530712219*^9, 3.607730560064932*^9}, {3.607730633769511*^9, 
+   3.607730661098077*^9}, {3.607730853115149*^9, 3.607730874050012*^9}, {
+   3.607731309593256*^9, 3.6077313109864407`*^9}, {3.607731649710964*^9, 
+   3.607731666171883*^9}}],
+
+Cell[BoxData[
+ InterpretationBox["\<\"Precision of log of error: \\!\\(10.`\\)\"\>",
+  StringForm["Precision of log of error: ``", 10.],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.6077322951256323`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   {RGBColor[0.24720000000000014`, 0.24, 0.6], PointBox[CompressedData["
+1:eJy9lHs0FHgUxwdjjOcINZHXeI1HmBlLtNbvZ4sopCzyDEspopJFqVGsR2rl
+tNKyGo+kZKTN8ShxSR4d0qZsLdkajC2PvMcjZtuz9q/+6Ow/e8+5557P+Z57
+zv1+/7i0oMjdIaIEAiH4Y/89/61qyncFaUOS8H+zMI7jqri1G6kJqW+FtWv+
+My8/33mJntaPBhfXOx9OU/os/7M/gPiV8tz01HWfZZEtFZ5zfnxkWX1Birl2
+/Se8UhITlcf/E63ZP2bh46UMqCNWWlp6BCXzJmXjwlQ+4RWL9/Oq/FHkqBr6
+6+SeDav3jaNG0gliuKHqaj4TyPzYxm1PhlQh8qFrQPqNCUQtD2hxz1AD9i8D
+5922TiIhV++EsqE67FSo21L1dBLZRMhUxdaoA2froNdZjyk0bIslt1trrPqZ
+RjTP8LhhJU3IPrnDfOTWNMqWcCt9ul0T5BuX3FuiZ1AKKZDSwNUEjo9rWBd9
+FkXmqEETiQbshVzNovZZdLPdSHDTk7bqfw75S7YrPS+ggYa2jEkGXYDSEqyn
+80lawN+/R+lKnwAplrAJ+oFaQPWNkpxImEdvc0fLXe9oQUIAv8KbuoBqeu3b
+vl/Rgj0yokfnOhcQrCVHdHtpA1uGIPghahFtIt1J4pRpr+a3hDiskEN+89qw
+Uj+QxKteQjn1ZlLtLjowPoFHQt0/oC4PG91zeTrQZfZj5G2RZbTLJ2ZXxbQO
+nErmbCusXkbritil1110ISIt06rcdwWRnZyzTAp0IZoyWFw5vYLY3j/D7VFd
+yOR1n268KkS1BSvalnZ6MNyjHMDTIuC+A1b3arP0IPVRb8rZYwQMh237Aof1
+oIuarJDRScBik68C9mE6NPCNxmLVRXDu3nkL10w6pA1tjkmPEMFjNfb3g97Q
+oazupERbkwh+42S7nWOuD9WpCzNsZVG82X76C89z+oDfKx48EyqKn4lNlXj1
+6oNgl7WKw31RbFdq6aHBMIDyyuBHsgpimDr6lDiUZAC8zqx7j4PEsLhF+0zx
+cwOguxBTZKvEcHKXQcOgviGUKfWHPpAg4hdJ9Pyc44awb+HLxXZfIhamtTIK
+ugwh5doUmXSLiI0U+DavaEbwYEf0kyKCOK7RGBE/EWUEMxHigRLu4jg4gXKp
+v9UIuCprS3xKxPEVYlsvS2UjFNLqpO4siuNTXbro7KGNQL7cqljjRMI6EbPb
+Mho+6uybvi0cEn4svHYhT8EYEuXnfl+aImHpula57hBjcIHG2jI7Cfxq9PBY
+Yo0xuCVy270uS+BkGbzMkDYBdwfn35xHJLCPoFVK198ELr2Pf9DzFRk3vxuY
+41aYAMekqYp5gYxzn61/RxYzhYNhFk7GA2Q8u4/NJnqYgo/LtyEiFpL4tSD/
+8ovrprBJp33yRqokLg9f1jm9ZAoqbZkor1cSm2jutdpMZ8B+UXtHfRMprC5m
+Uc92ZYDSC+7XCqel8JD18N2ZOAZY1hd6k59J4SdRf7REFjFgsiiH26QnjVXP
+e010dDDA8RGvxTNOGt+lfoinzjHAX8pWhNohjemTBioxGkyIST+T+UZdBh8o
+dAzqc2DCYPPt8xePyGA9/4AA86NMSLDJzjzeLIPv7d3Nu57LhELhNw/VqLLY
+r5gRv9jMBLJoj0f/AVncUDzR7D3OhIg1XQbNdbLYrSm8vJPKgpgj9SiaIoev
+Kgdb6dmywJ0cVmoZJIf9NtwdTznIgiymrd94pRzumdJp411kQVh+4utyCQqO
+EjyU3HKfBS8dzsTFe1NwLM2u5wafBdk7iucYXAp+ye5RIsqbrf4neSyoS/wp
+zMoM/gK9o9au
+     "]]}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{None, None},
+  AxesOrigin->{0, -19.224298090613015`},
+  Method->{},
+  PlotRange->{{0, 4.}, {-19.224298090613015`, -3.23707891599221}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{0.08, 0.08}, {0.3197443834924161, 0.3197443834924161}},
+  Ticks->{{{0, 
+      FormBox[
+       TemplateBox[{"10", "0"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {1, 
+      FormBox[
+       TemplateBox[{"10", "1"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {2, 
+      FormBox[
+       TemplateBox[{"10", "2"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {3, 
+      FormBox[
+       TemplateBox[{"10", "3"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {4, 
+      FormBox[
+       TemplateBox[{"10", "4"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}}, {{-25, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "25"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-24, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "24"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-23, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "23"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-22, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "22"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-21, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "21"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-20, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "20"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-19, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "19"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-18, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "18"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-17, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "17"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-16, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "16"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-15, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "15"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-14, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "14"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-13, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "13"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-12, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "12"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-11, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "11"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-10, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "10"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-9, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "9"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-8, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "8"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-7, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "7"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-6, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "6"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-5, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "5"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-4, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "4"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-3, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "3"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-2, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "2"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {-1, 
+      FormBox[
+       TemplateBox[{"10", 
+         RowBox[{"-", "1"}]}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}, {0, 
+      FormBox[
+       TemplateBox[{"10", "0"}, "Superscript", SyntaxForm -> SuperscriptBox], 
+       TraditionalForm]}}}]], "Output",
+ CellChangeTimes->{3.607732295284753*^9}]
+}, Open  ]]
+},
+WindowSize->{1918, 1123},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 2299, 63, 89, "Input"],
+Cell[2859, 85, 189, 2, 33, "Text"],
+Cell[3051, 89, 643, 17, 55, "Input"],
+Cell[CellGroupData[{
+Cell[3719, 110, 1517, 32, 77, "Input"],
+Cell[5239, 144, 222, 5, 32, "Output"]
+}, Open  ]],
+Cell[5476, 152, 626, 8, 57, "Text"],
+Cell[CellGroupData[{
+Cell[6127, 164, 2056, 58, 99, "Input"],
+Cell[8186, 224, 211, 4, 32, "Output"],
+Cell[8400, 230, 6921, 162, 266, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

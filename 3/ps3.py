@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import numpy as np
-import matplotlib.pyplot as plt
+
+h = np.loadtxt("data/h.dat")
 
 # do euler method for $\ddot{x} = -x$, with initial conditions
 # $x(0) = 1; \dot{x}(0) = 0$
@@ -18,62 +19,33 @@ def euler(h):
 		v = np.append(v, cur[1, 0])
 	return (x, v)
 
-# make euler method plot from $0$ to $6\pi$
-h = 0.1
+# save euler method data from $0$ to $6\pi$
 (x, v) = euler(h);
 t = np.arange(0, int(6*np.pi/h)) * h
-plt.subplot(2, 1, 1)
-plt.plot(t, x, "b.-")
-plt.ylabel("$x(t)$")
-plt.title("$h = %0.3f$" % (h))
-plt.subplot(2, 1, 2)
-plt.plot(t, v, "g.-")
-plt.xlabel("$t$")
-plt.ylabel("$v(t)$")
-plt.savefig("latex/problem1.pdf")
+np.savetxt("data/problem1.dat", np.array([t, x, v]).T, delimiter = " | ")
 
-# make error plots
+# save error data
 x_anal = np.cos(t)
 v_anal = -np.sin(t)
-plt.clf()
-plt.subplot(2, 1, 1)
-plt.plot(t, x_anal - x, "b.-")
-plt.ylabel("$x_{anal} - x(t)$")
-plt.title("$h = %0.3f$" % (h))
-plt.subplot(2, 1, 2)
-plt.plot(t, v_anal - v, "g.-")
-plt.xlabel("$t$")
-plt.ylabel("$v_{anal} - v(t)$")
-plt.savefig("latex/problem2.pdf")
+np.savetxt("data/problem2.dat", np.array([t, x_anal - x, v_anal - v]).T, delimiter = " | ")
 
 hs = 0.03 * 2.**-np.arange(0,5)
 maxes = np.array([])
-for h in hs:
-	(x, v) = euler(h)
-	t = np.arange(0, int(6*np.pi/h)) * h
+for hi in hs:
+	(x, v) = euler(hi)
+	t = np.arange(0, int(6*np.pi/hi)) * hi
 	x_anal = np.cos(t)
 	maxe = np.max(np.abs(x - x_anal))
 	maxes = np.append(maxes, maxe)
 
-# plot of max errors vs $h$
-plt.clf()
-plt.plot(hs, maxes, "g.-")
-plt.xlabel("$h$")
-plt.ylabel("Max error")
-plt.savefig("latex/problem3.pdf")
+# save max errors vs $h$
+np.savetxt("data/problem3.dat", np.array([hs, maxes]).T, delimiter = " | ")
 
 # energy as function of $t$
-h = 0.1;
 (x, v) = euler(h);
 t = np.arange(0, int(6*np.pi/h)) * h
 E = x**2 + v**2;
-plt.clf()
-plt.plot(t, E, ".-");
-plt.ylim([0, plt.ylim()[1]]);
-plt.xlabel("$t$");
-plt.ylabel("$E = x^2 + v^2$");
-plt.title("$h = %0.3f$" % (h))
-plt.savefig("latex/problem4.pdf")
+np.savetxt("data/problem4.dat", np.array([t, E]).T, delimiter = " | ")
 
 # implicit thing
 def euler_implicit(h):
@@ -93,57 +65,33 @@ def euler_implicit(h):
 hs = 0.03 * 2.**-np.arange(0,5)
 maxes_imp = np.array([])
 maxes_exp = np.array([])
-for h in hs:
-	(x, v) = euler(h)
-	t = np.arange(0, int(6*np.pi/h)) * h
+for hi in hs:
+	(x, v) = euler(hi)
+	t = np.arange(0, int(6*np.pi/hi)) * hi
 	x_anal = np.cos(t)
 	maxe = np.max(np.abs(x - x_anal))
 	maxes_exp = np.append(maxes_exp, maxe)
 
-	(x, v) = euler_implicit(h)
+	(x, v) = euler_implicit(hi)
 	maxe = np.max(np.abs(x - x_anal))
 	maxes_imp = np.append(maxes_imp, maxe)
 
-# plot of max errors vs $h$
-plt.clf()
-plt.plot(hs, maxes_imp, "b.-", label = "Implicit")
-plt.plot(hs, maxes_exp, "g.-", label = "Explicit")
-plt.xlabel("$h$")
-plt.ylabel("Max error")
-plt.legend(loc = "upper left")
-plt.savefig("latex/problem5_1.pdf")
+# save max errors vs $h$
+np.savetxt("data/problem5_1.dat", np.array([hs, maxes_imp, maxes_exp]).T, delimiter = " | ")
 
 # energy as function of $t$
-h = 0.1;
 (x, v) = euler(h);
 t = np.arange(0, int(6*np.pi/h)) * h
 E = x**2 + v**2;
-plt.clf()
-plt.plot(t, E, "b.-", label = "Explicit");
 (x, v) = euler_implicit(h);
-E = x**2 + v**2;
-plt.plot(t, E, "g.-", label = "Implicit")
-plt.ylim([0, plt.ylim()[1]]);
-plt.xlabel("$t$");
-plt.ylabel("$E = x^2 + v^2$");
-plt.title("$h = %0.3f$" % (h))
-plt.legend(loc = "upper left");
-plt.savefig("latex/problem5_2.pdf")
+E_imp = x**2 + v**2;
+np.savetxt("data/problem5_2.dat", np.array([t, E, E_imp]).T, delimiter = " | ")
 
 # phase space of explicit/implicit
-plt.clf()
-h = 0.1
 t = np.arange(0, int(6*np.pi/h)) * h
 (x, v) = euler(h)
-plt.plot(x, v, "b.-", label = "explicit");
-(x, v) = euler_implicit(h);
-plt.plot(x, v, "g.-", label = "implicit")
-plt.xlabel("$x$")
-plt.ylabel("$v$")
-plt.title("$h = %0.3f$" % (h))
-plt.legend();
-plt.grid(True);
-plt.savefig("latex/p2_problem1.pdf")
+(x_imp, v_imp) = euler_implicit(h);
+np.savetxt("data/p2_problem1.dat", np.array([x, v, x_imp, v_imp]).T, delimiter = " | ")
 
 def euler_symp(h, end):
 	initial_cond = np.matrix([[1, 0]]).transpose()
@@ -158,42 +106,23 @@ def euler_symp(h, end):
 	return (x, v)
 
 # phase space of symp
-plt.clf()
-h = 0.1
 t = np.arange(0, int(6*np.pi/h)) * h
 (x, v) = euler_symp(h, 6*np.pi)
-plt.plot(x, v, "r.-");
-plt.xlabel("$x$")
-plt.ylabel("$v$")
-plt.title("$h = %0.3f$" % (h))
-plt.grid(True);
-plt.savefig("latex/p2_problem2.pdf")
+np.savetxt("data/p2_problem2.dat", np.array([x, v]).T, delimiter = " | ")
 
 # energy as function of $t$
-plt.clf()
-h = 0.1;
 (x, v) = euler_symp(h, 6 * np.pi);
 t = np.arange(0, int(6*np.pi/h)) * h
 E = x**2 + v**2;
-plt.plot(t, E, "r.-")
-plt.xlabel("$t$");
-plt.ylabel("$E = x^2 + v^2$");
-plt.title("$h = %0.3f$" % (h))
-plt.savefig("latex/p2_problem3.pdf")
+np.savetxt("data/p2_problem3.dat", np.array([t, E]).T, delimiter = " | ")
 
 # long term evolution; plotting last 3 cycles after 360 cycles total
 # to see lag between symp and anal
-plt.clf()
-h = 0.1;
 cycles = 360;
 (x, v) = euler_symp(h, 2 * np.pi * cycles)
 t = np.arange(0, int(2 * np.pi * cycles/h))*h
+cutoff = int(2 * np.pi * (cycles - 3) / h)
+t = t[cutoff:]
+x = x[cutoff:]
 x_anal = np.cos(t)
-plt.plot(t, x, "r.-", label = "Sympl")
-plt.plot(t, x_anal, "b.-", label = "Analytic")
-plt.legend()
-plt.xlim([2 * np.pi * (cycles - 3), 2 * np.pi * cycles]);
-plt.xlabel("$t$")
-plt.ylabel("$x(t)$")
-plt.title("$h = %0.3f$" % (h))
-plt.savefig("latex/p2_problem4.pdf")
+np.savetxt("data/p2_problem4.dat", np.array([t, x, x_anal]).T, delimiter = " | ")

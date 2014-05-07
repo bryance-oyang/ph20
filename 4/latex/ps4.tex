@@ -1,0 +1,46 @@
+\documentclass[12pt, oneside, letterpaper, fleqn]{article}
+
+\usepackage{ducky}
+\pagestyle{fancy}
+\headheight 1.6cm
+\fancyhead[L]{Bryance Oyang\\PS 4\\Ph 20}
+
+\begin{document}
+
+\section{Part I}
+I used git to track the files. \texttt{git init} to create a git
+repository, \texttt{git add .} to tell git to track all the files,
+\texttt{git commit -a} to commit changes, \texttt{git clone} to make a
+copy of the repository somewhere else.
+
+\section{Part II}
+The python code for PS 3 was split into 2 files: one for doing all the
+calculations and saving the data into text files; the other for reading
+the data in the text files and making plots. The data was stored in
+\texttt{data/} and the pdf plots were saved in \texttt{latex/}
+
+A makefile was written to run the python codes if needed and to update
+the writeup (\texttt{pdflatex}). A separate makefile, \texttt{Makelatex}
+which I wrote a few years ago and have been using for all my latex
+documents, handled all the latex stuff, and was called using
+\texttt{make -f Makelatex} in the main makefile.
+
+\subsection{Makefile}
+\lstset{language = [gnu]make}
+\lstinputlisting{../../3/Makefile}
+
+\subsection{Makefile for latex things}
+(Random story: I wrote this my freshman year and was the first makefile
+I ever wrote.  I showed it to a friend, Chi Feng, and he said it looked
+ok and that made me happy and hence the first line tag I've kept in it
+since then.)
+\lstset{language = [gnu]make}
+\lstinputlisting{../../3/Makelatex}
+
+\subsection{Python code for generating data}
+\lstinputlisting[language = python]{../../3/ps3.py}
+
+\subsection{Python code for making plots}
+\lstinputlisting[language = python]{../../3/ps3.py}
+
+\end{document}

@@ -1,0 +1,207 @@
+\ProvidesPackage{ducky}
+
+%\documentclass[aps, prd, reprint, floatfix]{revtex4-1}
+%\documentclass[12pt,reqno,oneside,letterpaper,fleqn]{book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+%\usepackage{fouriernc}
+\usepackage{empheq}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+%\usepackage{parskip}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{upgreek}
+\usepackage{units}
+\usepackage[title, titletoc]{appendix}
+%\usepackage{titlesec}
+%\usepackage{mathpazo}
+\usepackage[usenames, dvipsnames]{color}
+%\usepackage{multicol}
+%\usepackage{caption}
+%\usepackage{subfig}
+\usepackage{microtype}
+\usepackage[italic]{esdiff}
+\renewcommand{\ES@difint}{}
+\renewcommand{\ES@derpint}{}
+\usepackage{xcolor}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+%\usepackage{enumitem}
+\usepackage[version=3]{mhchem}
+
+\lstset{
+basicstyle=\small\ttfamily,
+columns=fullflexible,
+numbers=left,
+numberstyle=\tiny\ttfamily,
+stepnumber=1,
+numbersep=10pt,
+numberfirstline=true,
+numberblanklines=true,
+tabsize=4,
+lineskip=-1.5pt,
+extendedchars=true,
+breaklines=true,
+keywordstyle=\color{Blue},
+identifierstyle=,
+commentstyle=\color{OliveGreen},
+stringstyle=\color{Maroon}\ttfamily,
+showstringspaces=true,
+showtabs=false,
+upquote=false,
+texcl=true,
+literate={:=}{{$\gets$ }}1 {<=}{{$\leq$}}1 {>=}{{$\geq$}}1
+{<>}{{$\neq$}}1 {~=}{{$\neq$}}1 {!=}{{$\neq$}}1
+}
+
+%\usepackage[super]{cite}
+%\renewcommand\@citess[1]{\textsuperscript{[#1]}}
+
+\usepackage[scaled=0.92]{helvet}	% set Helvetica as the sans-serif font
+%\usepackage{mathptmx}
+
+\usepackage{hyperref}
+\usepackage{hypcap}
+
+%\hypersetup{
+%    bookmarks=true,         % show bookmarks bar?
+%    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+%    pdffitwindow=false,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+%    pdftitle={My title},    % title
+%    pdfauthor={Author},     % author
+%    pdfsubject={Subject},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+%    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+%    pdfnewwindow=true,      % links in new window
+%    colorlinks=false,       % false: boxed links; true: colored links
+%    linkcolor=green,          % color of internal links
+%    citecolor=cyan,        % color of links to bibliography
+%    filecolor=magenta,      % color of file links
+%    urlcolor=blue,           % color of external links
+%    linkbordercolor=green,          % color of internal links
+%    citebordercolor=cyan,        % color of links to bibliography
+%    filebordercolor=magenta,      % color of file links
+%    urlbordercolor=blue
+%}
+
+%\renewcommand{\sectionautorefname}{Section}
+
+%\numberwithin{equation}{section}
+
+\setlength{\fboxsep}{6pt}
+%\titleformat{\chapter}[hang]{\bf\huge}{\thechapter}{2pc}{}
+
+%\DeclareMathOperator{\grad}{grad}
+%\DeclareMathOperator{\curl}{curl}
+%\DeclareMathOperator{\diver}{div}
+\newcommand{\grad}{\nabla}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\divd}{\div}
+\newcommand{\lap}{\nabla^2}
+\renewcommand{\div}{\nabla\cdot}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\sgn}{sgn}
+
+%\theoremstyle{plain}
+%\newtheorem*{theorem}{Theorem}
+%\newtheorem*{lemma}{Lemma}
+%\newtheorem*{proposition}{Proposition}
+%\newtheorem*{corollary}{Corollary}
+%
+%\theoremstyle{definition}
+%\newtheorem*{definition}{\textsc{Definition}}
+%\newtheorem*{conjecture}{\textsc{Conjecture}}
+%\newtheorem*{example}{\textsc{Example}}
+%\newtheorem*{solution}{\textsc{Solution}}
+
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+%\newtheorem*{note}{Note}
+%\newtheorem{case}{Case}
+
+\newcommand{\bra}[1]{\left\langle#1\right\rvert}
+\newcommand{\ket}[1]{\left\lvert#1\right\rangle}
+\newcommand{\braket}[2]{\left\langle#1\middle\vert#2\right\rangle}
+\newcommand{\ketbra}[2]{\ket{#1}\bra{#2}}
+
+\newcommand{\Lt}{\mathcal{L}}
+\newcommand{\Ft}{\mathcal{F}}
+\newcommand{\bv}[1]{\mathbf{#1}}
+\newcommand{\uv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\ol}[1]{\overline{#1}}
+
+\newcommand{\e}{\epsilon}
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\g}{\gamma}
+\renewcommand{\d}{\delta}
+\newcommand{\m}{\mu}
+\newcommand{\n}{\nu}
+\renewcommand{\r}{\rho}
+\newcommand{\s}{\sigma}
+\renewcommand{\l}{\lambda}
+
+\newcommand{\st}{\text{ such that }}
+\newcommand{\inv}{^{-1}}
+\newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\eqg}[1]{\begin{gather*}#1\end{gather*}}
+\newcommand{\eqn}[1]{\begin{align}#1\end{align}}
+\newcommand{\eqgn}[1]{\begin{gather}#1\end{gather}}
+\newcommand{\boxeq}[2]{\begin{empheq}[box=\boxed]{#1}#2\end{empheq}}
+\newcommand{\Set}[1]{\lbrace#1\rbrace}
+\newcommand{\set}[1]{\left\lbrace#1\right\rbrace}
+\newcommand{\Norm}[1]{\lVert #1 \rVert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\Abs}[1]{\lvert #1 \rvert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\Parens}[1]{\left(#1\right)}
+\newcommand{\E}[1]{\times 10^{#1}}
+\newcommand{\textsubscript}[1]{$_{\text{#1}}$}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\od}[2]{\displaystyle{\frac{d #1}{d #2}}}
+\newcommand{\odd}[2]{\displaystyle{\frac{d^2 #1}{d #2^2}}}
+\newcommand{\odx}[1]{\displaystyle{\frac{d #1}{dx}}}
+\newcommand{\odt}[1]{\displaystyle{\frac{d #1}{dt}}}
+\newcommand{\oddx}[1]{\displaystyle{\frac{d^2 #1}{dx^2}}}
+\newcommand{\oddt}[1]{\displaystyle{\frac{d^2 #1}{dt^2}}}
+\newcommand{\pd}[2]{\displaystyle{\frac{\partial #1}{\partial #2}}}
+\newcommand{\pdx}[1]{\displaystyle{\frac{\partial #1}{\partial x}}}
+\newcommand{\pdt}[1]{\displaystyle{\frac{\partial #1}{\partial t}}}
+\newcommand{\pddx}[1]{\displaystyle{\frac{\partial^2 #1}{\partial x^2}}}
+\newcommand{\pddt}[1]{\displaystyle{\frac{\partial^2 #1}{\partial t^2}}}
+\newcommand{\pdr}[1]{\displaystyle{\frac{\partial #1}{\partial r}}}
+\newcommand{\pddr}[1]{\displaystyle{\frac{\partial^2 #1}{\partial r^2}}}
+\newcommand{\pdth}[1]{\displaystyle{\frac{\partial #1}{\partial \theta}}}
+\newcommand{\pddth}[1]{\displaystyle{\frac{\partial^2 #1}{\partial \theta^2}}}
+\newcommand{\odr}[1]{\displaystyle{\frac{d #1}{d r}}}
+\newcommand{\oddr}[1]{\displaystyle{\frac{d^2 #1}{d r^2}}}
+\newcommand{\odth}[1]{\displaystyle{\frac{d #1}{d \theta}}}
+\newcommand{\oddth}[1]{\displaystyle{\frac{d^2 #1}{d \theta^2}}}
+
+\renewcommand{\tikz}[1]{\begin{center}\begin{tikzpicture} #1
+\end{tikzpicture}\end{center}}
+
+\everymath{\displaystyle}
+
+\setlength{\tabcolsep}{10pt}
+
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{apsrev4-1}

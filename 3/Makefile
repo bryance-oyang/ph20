@@ -7,7 +7,7 @@ DATA = $(PLOTS:.pdf=.dat)
 pdf/ps3.pdf: $(addprefix latex/, $(LATEXDEPS))
 	make -f Makelatex
 
-$(addprefix latex/, $(PLOTS)): $(addprefix data/, $(DATA))
+$(addprefix latex/, $(PLOTS)): $(addprefix data/, $(DATA)) ps3_plot.py
 	./ps3_plot.py
 
 $(addprefix data/, $(DATA)): ps3.py

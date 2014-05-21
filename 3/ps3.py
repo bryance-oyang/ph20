@@ -108,7 +108,8 @@ def euler_symp(h, end):
 # phase space of symp
 t = np.arange(0, int(6*np.pi/h)) * h
 (x, v) = euler_symp(h, 6*np.pi)
-np.savetxt("data/p2_problem2.dat", np.array([x, v]).T, delimiter = " | ")
+(x_anal, v_anal) = (np.cos(t), -np.sin(t))
+np.savetxt("data/p2_problem2.dat", np.array([x, v, x_anal, v_anal]).T, delimiter = " | ")
 
 # energy as function of $t$
 (x, v) = euler_symp(h, 6 * np.pi);

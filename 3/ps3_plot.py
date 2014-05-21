@@ -106,11 +106,15 @@ plt.savefig("latex/p2_problem1.pdf")
 data = np.loadtxt("data/p2_problem2.dat", delimiter = " | ")
 x = data[:, 0]
 v = data[:, 1]
+x_anal = data[:, 2]
+v_anal = data[:, 3]
 plt.clf()
-plt.plot(x, v, "r.-");
+plt.plot(x, v, "r.-", label = "Symplectic");
+plt.plot(x_anal, v_anal, "b.-", label = "Analytic");
 plt.xlabel("$x$")
 plt.ylabel("$v$")
 plt.title("$h = %0.3f$" % (h))
+plt.legend()
 plt.grid(True);
 plt.savefig("latex/p2_problem2.pdf")
 
